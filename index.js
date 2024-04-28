@@ -3,10 +3,11 @@ import  mysql  from "mysql";
 import cors from "cors";
 const app = express()
 const db = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"Hyderabad@2007",
-    database:"jdbc",
+    host:"mysql-3437486a-mohiuddin293-cedc.h.aivencloud.com",
+    port:11919,
+    user:"avnadmin",
+    password:"AVNS_8XsUrC_8JaWzeT5c7Tm",
+    database:"defaultdb",
 })
 app.use(express.json())
 app.use(cors())
