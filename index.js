@@ -1,16 +1,25 @@
-import  express  from "express";
-import  mysql  from "mysql";
+import express from "express";
+import mysql from "mysql2"; // Import mysql2
 import cors from "cors";
-const app = express()
+import fs from "fs";
+
+const app = express();
+
 const db = mysql.createConnection({
-    host:"mysql-3437486a-mohiuddin293-cedc.h.aivencloud.com",
-    port:11919,
-    user:"avnadmin",
-    password:"AVNS_8XsUrC_8JaWzeT5c7Tm",
-    database:"defaultdb",
-})
-app.use(express.json())
-app.use(cors())
+    host: "mysql-3437486a-mohiuddin293-cedc.h.aivencloud.com",
+    port: 11919,
+    user: "avnadmin",
+    password: "AVNS_8XsUrC_8JaWzeT5c7Tm",
+    database: "defaultdb",
+    ssl: {
+        ca: fs.readFileSync("ca.pem") // Replace with the actual path to your CA certificate file
+    }
+});
+
+app.use(express.json());
+app.use(cors());
+
+// No need to explicitly call db.connect() with mysql2
 
 db.connect((err) => {
     if (err) {
